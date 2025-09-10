@@ -1,21 +1,32 @@
+//
+//  HomeView.swift
+//  Timer
+//
+//  Created by Isabelle Fang on 9/9/25.
+//
+
+
 import SwiftUI
 
+
 struct HomeView: View {
-    @State private var showDetails = false
+    @State private var showTimer = false
     
     var body: some View {
         VStack{
             Button("Welcome!"){
-                withAnimation {
-                    showDetails.toggle()
-                }
+                    showTimer.toggle()
+            }.fullScreenCover(isPresented: $showTimer){
+                TimerView()
             }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(.black)
+                .foregroundColor(.white)
             
-            if showDetails {
-                WindowGroup {
-                    TimerView()
-                }.transition(.slide)
-            }
         }
     }
+}
+
+#Preview {
+    HomeView()
 }
