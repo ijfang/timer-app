@@ -17,12 +17,22 @@ struct HomeView: View {
             Button("Welcome!"){
                     showTimer.toggle()
             }.fullScreenCover(isPresented: $showTimer){
-                TimerView()
+                TabView {
+                    TimerView()
+                        .tabItem{
+                            Label("Original", systemImage: "timer")
+                        }
+                    
+                    PomodoroView()
+                        .tabItem {
+                            Label("Pomodoro", systemImage: "leaf.circle")
+                        }
+                }
+                
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background(.black)
                 .foregroundColor(.white)
-            
         }
     }
 }
